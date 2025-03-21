@@ -44,6 +44,19 @@ services:
         target: /code/app
     networks:
     - mongo-compose-network
+  
+  api:
+    build: ./api
+    depends_on:
+      - mongo
+    volumes:
+      - type: bind
+        source: ./api/app
+        target: /code/app
+    ports:
+      - "8000:80"
+    networks:
+    - mongo-compose-network
     
 
 networks:
